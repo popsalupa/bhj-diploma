@@ -35,11 +35,9 @@
     catch (err) {
         callback(err)
     }
-     // нужно ли добавлять слушатель?
     xhr.addEventListener('readystatechange', () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
             callback(null, xhr.response);
         }
     });
 };
-Footer

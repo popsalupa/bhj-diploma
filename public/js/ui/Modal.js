@@ -4,52 +4,56 @@
  * В первую очередь это открытие или
  * закрытие имеющихся окон
  * */
-class Modal {
+ class Modal {
   /**
    * Устанавливает текущий элемент в свойство element
    * Регистрирует обработчики событий с помощью Modal.registerEvents()
    * Если переданный элемент не существует,
    * необходимо выкинуть ошибку.
    * */
-  constructor(element){
-    if (!element) {
-      throw new Error('NO ELEMENT');
-    }
-    this.element = element;
-    this.registerEvents();
+  constructor(element) {
+      if (!element) {
+          throw new Error('NO ELEMENT');
+      }
+      this.element = element;
+      this.registerEvents();
   }
-
   /**
    * При нажатии на элемент с data-dismiss="modal"
    * должен закрыть текущее окно
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
-    this.element.querySelectorAll('[data-dismiss="modal"]').forEach(bn => {
-      bn.onclick = e => this.onClose(e)
-    });
-  }
+      const closeButtons = this.element.querySelectorAll(
+          '[data-dismiss="modal"]'
+      );
 
+      for (let btn of closeButtons) {
+          btn.addEventListener('click', (event) => {
+              this.onClose(event);
+          });
+      }
+  }
   /**
    * Срабатывает после нажатия на элементы, закрывающие окно.
    * Закрывает текущее окно (Modal.close())
    * */
-  onClose(e) {
-    e.ptreventDefault();
-    this.close();
+  onClose(event) {
+      event.preventDefault();
+      this.close();
   }
   /**
    * Открывает окно: устанавливает CSS-свойство display
    * со значением «block»
    * */
   open() {
-    this.element.style.display = 'block';
-    this.element.querySelector('.from-group input').focus();
+      this.element.style.display = 'block';
+      this.element.querySelector('.form-group input').focus();
   }
   /**
    * Закрывает окно: удаляет CSS-свойство display
    * */
-  close(){
-    this.element.style.removeProperty('display');
+  close() {
+      this.element.style.display = 'none';
   }
 }

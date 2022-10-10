@@ -5,6 +5,12 @@
       "email": "demo@demo",
       "password": "demo",
       "id": "1"
+    },
+    {
+      "name": "hh",
+      "email": "hh@hh",
+      "password": "hh",
+      "id": "832zcz240l92t4fcg"
     }
   ],
   "accounts": [
@@ -25,15 +31,6 @@
     }
   ],
   "transactions": [
-    {
-      "account_id": "1",
-      "created_at": "2019-09-15 10:24:02",
-      "id": "1",
-      "name": "Кредит",
-      "sum": 5000,
-      "type": "expense",
-      "user_id": "1"
-    },
     {
       "account_id": "1",
       "created_at": "2019-09-17 15:53:02",

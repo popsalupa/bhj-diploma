@@ -31,17 +31,17 @@
    * вызывает AccountsWidget.onSelectAccount()
    * */
   registerEvents() {
-      this.element.addEventListener('click', (event) => {
-          event.preventDefault();
-          const createAccount = event.target.closest('.create-account');
-          const existingAccount = event.target.closest('.account');
-
-          if (createAccount) {
-              App.getModal('createAccount').open();
-          } else if (existingAccount) {
-              this.onSelectAccount(existingAccount);
-          }
-      });
+      this.element.querySelector('.create-account').onclick = event => {
+        event.preventDefault();
+        App.getModal('createAccount').open();
+      };
+      this.element.onclick = event => {
+        if(event.target.classList.contains('header')) {
+            return;
+        }
+        event.preventDefault();
+        this.onSelectAccount(event.target.closest('li.account'));
+      };
   }
 
   /**
@@ -91,9 +91,10 @@
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount(element) {
-      for (let item of document.querySelectorAll('.account')) {
-          item.classList.remove('active');
-      }
+        if (this.prevActiveElement) {
+            this.prevActiveElement.classList.remove('active');
+        }
+        
       element.classList.add('active');
       App.showPage('transactions', { account_id: element.dataset.id });
   }

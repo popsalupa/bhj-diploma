@@ -129,7 +129,7 @@ class TransactionsPage {
    * Устанавливает заголовок в элемент .content-title
    * */
   renderTitle(name){
-    document.querySelector('..content-title').textContent = name;
+    document.querySelector('.content-title').textContent = name;
   }
 
   /**

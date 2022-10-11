@@ -91,12 +91,11 @@
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount(element) {
-        if (this.prevActiveElement) {
-            this.prevActiveElement.classList.remove('active');
+        for (let item of document.querySelectorAll('.account')) {
+        item.classList.remove('active');
         }
-        
-      element.classList.add('active');
-      App.showPage('transactions', { account_id: element.dataset.id });
+        element.classList.add('active');
+        App.showPage('transactions', { account_id: element.dataset.id });
   }
 
   /**
